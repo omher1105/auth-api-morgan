@@ -1,6 +1,5 @@
 const authService = require('../services/auth');
 
-
 function login(req, res) {
     return authService.authenticate(req.body)
         .then(token => {
@@ -15,8 +14,8 @@ function login(req, res) {
                 message: err.message
             });
         })
-};
+}
 
 module.exports = {
     login
-}
+};

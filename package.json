@@ -1,6 +1,6 @@
 {
-  "name": "authentication-api",
-  "version": "0.0.0",
+  "name": "ShipFace-api",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -16,11 +16,11 @@
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
-    "morgan": "~1.9.0",
     "pg": "^7.6.0",
     "pug": "2.0.0-beta11",
     "sequelize": "^4.41.0",
     "sequelize-cli": "^5.2.0",
-    "sequelize-values": "^1.1.0"
+    "sequelize-values": "^1.1.0",
+    "uuid": "^3.3.2"
   }
 }

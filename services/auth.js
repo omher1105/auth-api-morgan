@@ -1,12 +1,8 @@
 const bcrypt = require('bcrypt');
-
 const jwt = require('jsonwebtoken');
-
-
-const models = require('../models');
-
 const config = require('../app.config');
 
+const models = require('../models');
 const Users = models.user;
 
 const authenticate = params => {
@@ -18,18 +14,18 @@ const authenticate = params => {
         raw: true
     }).then(user => {
         if (!user)
-            throw new Error('Usuario no existe!');
+            throw new Error('USER_NOT_FOUND');
+        /** Add password hash check **/
         if (params.password !== user.password)
-            throw new Error('Contraseña erronea');
+            throw new Error('INVALID_PASSWORD');
         const payload = {
             email: user.email,
             id: user.id,
             time: new Date()
         };
-        const token = jwt.sign(payload, config.jwtSecret, {
+	    return jwt.sign(payload, config.jwtSecret, {
             expiresIn: config.tokenExpireTime
         });
-        return token;
     });
 };
 

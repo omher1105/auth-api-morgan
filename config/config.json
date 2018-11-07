@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "luis123",
-    "database": "auth",
+    "username": "morganzysman",
+    "password": "",
+    "database": "shipface",
     "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": false
