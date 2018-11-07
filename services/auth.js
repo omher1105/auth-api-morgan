@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../app.config');
 
 const models = require('../models');
-const Users = models.user;
+const Users = models.User;
 
 const authenticate = params => {
 
@@ -16,14 +16,14 @@ const authenticate = params => {
         if (!user)
             throw new Error('USER_NOT_FOUND');
         /** Add password hash check **/
-        if (params.password !== user.password)
+        if (!bcrypt.compareSync(params.password, user.password))
             throw new Error('INVALID_PASSWORD');
         const payload = {
             email: user.email,
             id: user.id,
             time: new Date()
         };
-	    return jwt.sign(payload, config.jwtSecret, {
+        return jwt.sign(payload, config.jwtSecret, {
             expiresIn: config.tokenExpireTime
         });
     });

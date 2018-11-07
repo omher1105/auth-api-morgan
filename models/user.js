@@ -2,14 +2,16 @@
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
 	    id: {
-		    type: Sequelize.UUID,
+		    type: DataTypes.UUID,
 		    primaryKey: true,
-		    defaultValue: Sequelize.UUIDV4,
+		    defaultValue: DataTypes.UUIDV4,
 	    },
 	    email: DataTypes.STRING,
         password: DataTypes.STRING,
-        first_name: DataTypes.STRING,
-        last_name: DataTypes.STRING,
+        firstName: DataTypes.STRING,
+        lastName: DataTypes.STRING,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE
     }, {});
     User.associate = function (models) {
         // associations can be defined here
