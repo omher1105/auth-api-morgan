@@ -16,6 +16,23 @@ function login(req, res) {
         })
 }
 
+function createUser(req, res) {
+    return authService.createUser(req.body)
+        .then(json => {
+            res.send({
+                success: true,
+                data: {json}
+            })
+        })
+        .catch(err => {
+            res.send({
+                success: false,
+                message: err.message
+            });
+        })
+}
+
 module.exports = {
-    login
+    login,
+    createUser
 };

@@ -29,6 +29,21 @@ const authenticate = params => {
     });
 };
 
+const createUser = params => {
+    return Users.create({
+        id:params.id,
+        email: params.email,
+        password: bcrypt(params.password),
+        firstName: params.firstName,
+        lastName: params.lastName,
+        createdAt: params.createdAt,
+        updateAt: params.updateAt
+    })
+        .then(json => console.log(json))
+        .catch(error => console.log(error));
+};
+
 module.exports = {
-    authenticate
+    authenticate,
+    createUser
 };
