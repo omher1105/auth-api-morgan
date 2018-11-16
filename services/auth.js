@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../app.config');
+const uuidv4 = require("uuid/v4");
+
 
 const models = require('../models');
 const Users = models.User;
@@ -31,13 +33,13 @@ const authenticate = params => {
 
 const createUser = params => {
     return Users.create({
-        id:params.id,
+        id: uuidv4(),
         email: params.email,
-        password: bcrypt(params.password),
+        password: bcrypt.hashSync(params.password, config.saltRounds),
         firstName: params.firstName,
         lastName: params.lastName,
-        createdAt: params.createdAt,
-        updateAt: params.updateAt
+        createdAt: new Date(),
+        updateAt: new Date
     })
         .then(json => console.log(json))
         .catch(error => console.log(error));
