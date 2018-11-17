@@ -23,8 +23,17 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
 }, async (accessToken, refreshToken, profile, contact, done) => {
     // console.log("accessToken", accessToken)
     // console.log("refreshToken", refreshToken)
-    console.log("profile", profile)
+    // console.log("profile", profile)
     // console.log("contact", contact)
+    var Gmail = require('node-gmail-api')
+        , gmail = new Gmail(accessToken)
+        , s = gmail.messages('label:inbox', {max: 10})
+
+    s.on('data', function (d) {
+        console.log(d.snippet)
+    })
 
 }));
 
+
+//GOOGLE CONTACT
